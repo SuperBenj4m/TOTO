@@ -31,10 +31,21 @@ class Apriori:
     def Lk(self):
         return sorted(self.current.keys())
 
-    
+    def cross_product(self):
+        Lk = self.Lk()
+        k = len(Lk[0])
+        p = len(Lk)
+        futur = {}
+        for i in range(1, p-1, 1):
+            j = i+1
+            while j <= p and Lk[i][k-1] == Lk[j][k-1]:
+                nouveau = Lk[i] + Lk[j][-1]
+                if nouveau in Lk:
+                    futur[nouveau] = intersection(Lk[i].key(), Lk[j].key())
+                j += 1
+        current = futur
+        self.candidates_sz = k+1
+        self.candidates = "RIEN"
         
-                    
-        
-
 #==================================================================
 
